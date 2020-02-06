@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+    <h1>Вход Под Хвостом.</h1>
+    {% if form.errors %}
+        <p>Ваши логин и пароль не совпадают. Пожалуйста, попробуйте еще.</p>
+    {% else %}
+        <p>Лапки на клавиатуру и введите ваши учетные данные.
+            Если у вас еще нет аккаунта <a href="{% url "register" %}">зарегистрируйтесь тут</a> </p>
+    {% endif %}
+
+    <div class="login-form">
+        <form action="{% url 'login' %}" method="post">
+            <p><a href="{% url "password_reset" %}">Забыли пароль?</a> </p>
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <p><input type="submit" value="Гав!"</p>
+        </form>
+    </div>
+
+    <div class="social">
+    <ul>
+      <li class="facebook"><a href="{% url "social:begin" "facebook" %}">Login with Facebook</a></li>
+      <li class="vk-oauth2"><a href="{% url "social:begin" "vk-oauth2" %}">Login with VK</a></li>
+        <a href="/login/vk-oauth2">VK</a>
+    </ul>
+  </div>
+{% endblock %}

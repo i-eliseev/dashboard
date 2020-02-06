@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Клеточка{% endblock %}
+
+{% block content %}
+    <h1>Моя Клеточка</h1>
+
+    <p>Добро пожаловать в вашу Клеточку!</p>
+
+    {% with total_images_created=request.user.images_created.count %}
+        <p>В вашем фотоальбоме {{ total_images_created }} фото.</p>
+    {% endwith %}
+
+    <p>Перетащите эту кнопку на панель закладок, что бы добавлять в свой
+        альбом изображения с любых сайтов.
+        <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="button">Сохранить это!</a>
+    </p>
+
+    <p>Так же вы можете <a href="{% url "edit" %}">редактировать свой профиль</a> или
+        <a href="{% url "password_change" %}">изменить пароль.</a>
+    </p>
+{% endblock %}
