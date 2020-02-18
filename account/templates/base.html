@@ -15,12 +15,13 @@
                 </li>
 
                 <li {% if section == "images" %}class="selected"{% endif %}>
-                    <a href="#">Фоточки</a>
+                    <a href="{% url "images:list" %}">Фоточки</a>
                 </li>
 
                 <li {% if section == "people" %}class="selected"{% endif %}>
-                    <a href="#">Стая</a>
+                    <a href="{% url "user_list" %}">Стая</a>
                 </li>
+
             </ul>
         {% endif %}
 
@@ -54,7 +55,6 @@
   <script>
     var csrftoken = Cookies.get('csrftoken');
     function csrfSafeMethod(method) {
-
       return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
     $.ajaxSetup({
