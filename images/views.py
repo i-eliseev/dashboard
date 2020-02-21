@@ -35,6 +35,32 @@ def image_create(request):
                    'form': form})
 
 
+@login_required
+def image_create(request):
+    if request.method == 'POST':
+        # форма отправлена
+        form = ImageCreateForm(data=request.POST)
+        if form.is_valid():
+            # валидация формы
+            cd = form.cleaned_data
+            new_item = form.save(commit=False)
+
+            # добавляем текущего пользователя
+            new_item.user = request.user
+            new_item.save()
+            create_action(request.user, 'добавил изображение', new_item)
+            messages.success(request, 'Изображение успешно добавлено')
+
+            return redirect(new_item.get_absolute_url())
+    else:
+        form = ImageCreateForm(data=request.GET)
+
+    return render(request,
+                  'images/image/create.html',
+                  {'section': 'images',
+                   'form': form})
+
+
 """Обработчик лайков"""
 @ajax_required
 @login_required

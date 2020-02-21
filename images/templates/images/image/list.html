@@ -4,9 +4,16 @@
 
 {% block content %}
   <h1>Images bookmarked</h1>
+
+ <form action="create/" method="post">
+        {% csrf_token %}
+        <p><input type="submit" value="CREATE"> </p>
+  </form>
+
   <div id="image-list">
     {% include "images/image/list_ajax.html" %}
   </div>
+
 {% endblock %}
 
 {% block domready %}

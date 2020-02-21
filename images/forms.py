@@ -4,11 +4,14 @@ from urllib import request
 from django.core.files.base import ContentFile
 from django.utils.text import slugify
 
+class AddImg(forms.Form):
+    urlImg = forms.CharField()
+
 class ImageCreateForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ('title', 'url', 'description')
-        widgets = {'url': forms.HiddenInput,}
+       #widgets = {'url': forms.HiddenInput,}
 
 
     def clean_url(self):
@@ -31,4 +34,6 @@ class ImageCreateForm(forms.ModelForm):
         if commit:
             image.save()
         return image
+
+
 
