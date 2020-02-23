@@ -137,6 +137,7 @@ def user_follow(request):
             return JsonResponse({'status':'ok'})
     return JsonResponse({'status': 'ok'})
 
+
 """REST API"""
 class ProfileView(APIView):
     def get(self, request):
