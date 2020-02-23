@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from .views import ProfileView
 
 
 urlpatterns = [
@@ -31,4 +32,5 @@ urlpatterns = [
     path('users/', views.user_list, name='user_list'),
     path('users/follow/', views.user_follow, name='user_follow'),
     path('users/<username>/', views.user_detail, name='user_detail'),
+    path('accounts/', ProfileView.as_view()),
 ]

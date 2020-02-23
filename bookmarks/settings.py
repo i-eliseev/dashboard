@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'images.apps.ImagesConfig',
     'sorl.thumbnail',
     'actions.apps.ActionsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,6 @@ EMAIL_HOST_USER = 'googoosik888@gmail.com'
 EMAIL_HOST_PASSWORD = 'zel4630299'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+

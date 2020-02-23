@@ -8,9 +8,12 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from actions.utils import create_action
 from actions.models import Action
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile, Contact
+from .serializers import AccountSerializer
 
 
 """Обработчик авторизации пользователя """
@@ -133,3 +136,10 @@ def user_follow(request):
         except User.DoesNotExist:
             return JsonResponse({'status':'ok'})
     return JsonResponse({'status': 'ok'})
+
+"""REST API"""
+class ProfileView(APIView):
+    def get(self, request):
+        profiles = Profile.objects.all()
+        serializer = AccountSerializer(profiles, many=True)
+        return Response({"profiles": serializer.data})
