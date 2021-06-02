@@ -27,5 +27,5 @@ social-auth-core==3.2.0
 sorl-thumbnail==12.4.1
 sqlparse==0.3.0
 static3==0.7.0
-urllib3==1.25.8
+urllib3==1.26.5
 yarg==0.1.9
